@@ -16,26 +16,36 @@ public class ProblemSet {
 
 
         // Rule 1: Must contain exactly one '@'
-		if (!email.contains("@") || email.indexOf("@")!=email.lastIndexOf("@")){
-			System.out.println("0Invalid");
+		if (!email.contains("@")){
+			System.out.println("0Invalid: Missing @");
+			return ;
+		}
+
+		if (email.indexOf("@")!=email.lastIndexOf("@")){
+			System.out.println("0Invalid: Multiple @");
 			return ;
 		}
 
 		// Rule 2: Must not start or end with '.'
 		if (email.startsWith(".") || email.endsWith(".")){
-			System.out.println("1Invalid");
+			System.out.println("1Invalid: Starts or ends with dot");
 			return ;
 		}
 
 		// Rule 3: Must not contain spaces
-		if(!email.trim().equals(email)){
-			System.out.println("2Invalid");
+		if(!email.contains(" ")){
+			System.out.println("2Invalid: Contains spaces");
 			return ;
 		}
 
 		// Rule 4: Local part must be 1-64 characters
-		if (email.indexOf("@")>63 || email.indexOf("@")<1 ){
-			System.out.println("3Invalid");
+		if (email.indexOf("@")<1 ){
+			System.out.println("3Invalid: Local part too short");
+			return ;
+		}
+
+		if (email.indexOf("@")>63){
+			System.out.println("3Invalid: Local part too long");
 			return ;
 		}
 
@@ -43,7 +53,7 @@ public class ProblemSet {
 
 		// Rule 5: Domain must contain at least one dot
 		if (!domain.contains(".")){
-			System.out.println("4Invalid");
+			System.out.println("4Invalid: No dot in domain");
 			return ;
 		}
 
@@ -51,12 +61,25 @@ public class ProblemSet {
 
 		// Rule 6: Domain extension must be 2-6 characters
 		if (aftfinaldot.length()>6 || aftfinaldot.length()<2){
-			System.out.println("5Invalid");
+			System.out.println("5Invalid: Invalid domain extension length");
+			return ;
+		}
+        
+		// Exception B
+		if (domain.contains("+") || domain.contains("_")){
+			System.out.println("7Invalid: Invalid characters in domain part");
 			return ;
 		}
 
-		else{
-			System.out.println("Valid");
+		// Exception C
+		String localpart = email.substring(0, email.indexOf("@")) ;
+
+		if (localpart.contains(".") && domain.equals("gmail.com")){
+			System.out.println("Valid (Gmail normalized)");
+            return ;
+		}
+			
+		System.out.println("Valid");
 		}
 	
 
