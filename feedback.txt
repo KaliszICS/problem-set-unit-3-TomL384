@@ -1,0 +1,13 @@
+K(30%): 95
+I(30%): 80
+C(10%): 100
+A(30%): 75
+85 of 90%: 76.5%
+
+email was spelling incorrectly on line 17
+extra } at the end of your program
+Spaces error the reverse of what it should check.
+64 is valid so your condition on line 49 should be 64 not 63
+Should say gmail normalized even if there are no dots.
+emails should not be able to start with + or _
+Good work for being last minute.  Make sure to start the next one earlier.
